@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,7 +17,7 @@ public class AppendService {
     private final DocumentRepository repository;
 
 
-    public ResponseEntity<String> appendData(EventRequestDto eventRequestDto){
+    public ResponseEntity<String> appendData(EventRequestDto eventRequestDto) {
         Event event = Event.builder()
                 .id(UUID.randomUUID())
                 .createdAt(LocalDateTime.now())
@@ -41,5 +42,11 @@ public class AppendService {
                 .build();
         repository.save(event);
         return ResponseEntity.ok().body("Saved successfully");
+    }
+
+    public List<Event> findall() {
+        List<Event> getAllEvent = repository.findAll();
+
+        return getAllEvent;
     }
 }

@@ -21,8 +21,11 @@ public class CassandraConfig {
     @Bean
     public CqlSessionFactoryBean session(){
         CqlSessionFactoryBean session = new CqlSessionFactoryBean();
-        session.setKeyspaceName("cloudops");
+        session.setKeyspaceName("keyspace");
         session.setLocalDatacenter("datacenter1");
+        session.setUsername("사용자");
+        session.setPassword("패스워드");
+        session.setContactPoints("<EC2PublicIP>:9042");
         return session;
     }
 
